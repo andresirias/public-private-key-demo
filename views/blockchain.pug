@@ -92,8 +92,7 @@ block content
       try {
         var message = $('#block'+block+'chain'+chain+'tx'+tx+'value').val() +
                       $('#block'+block+'chain'+chain+'tx'+tx+'from').val() +
-                      $('#block'+block+'chain'+chain+'tx'+tx+'to').val() +
-                      $('#block'+block+'chain'+chain+'tx'+tx+'seq').val();
+                      $('#block'+block+'chain'+chain+'tx'+tx+'to').val() 
         var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));
         var pubKey = ec.keyFromPublic($('#block'+block+'chain'+chain+'tx'+tx+'from').val(), 'hex');
         if (pubKey.verify(binaryMessage, $('#block'+block+'chain'+chain+'tx'+tx+'sig').val()))

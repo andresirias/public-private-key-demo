@@ -1,0 +1,77 @@
+extends layout
+
+block content
+  .container
+
+    .card
+      h4.card-header Registrar Usuario
+      .card-body
+        form.form-horizontal
+          .form-group
+            label.control-label(for='data') Nombre
+            .input-group
+              input.form-control
+          .form-group
+            label.control-label(for='data') Apellidos
+            .input-group
+              input.form-control
+          .form-group
+            label.control-label(for='data') Especialidad
+            .input-group
+              input.form-control
+          .form-group
+            label.control-label(for='data') Llave privada
+            .input-group
+              input.form-control#privateKey(aria-label='Private Key', type='number')
+              span.input-group-btn
+                button.btn.btn-secondary#randomButton(type='button', ) Aleatorio
+          .form-group
+            label.control-label(for='data') Llave pública
+            input#publicKey.form-control(disabled)
+          .form-group
+              span.input-group-btn
+                button.btn.btn-primary#registerButton(type='button', ) Registrar
+          label.alert.alert-success#registerAlert(role="alert")
+            This is a success alert—check it out!
+
+
+  script.
+    var EC = elliptic.elliptic().ec;
+    var ec = new EC('secp256k1');
+
+    $('#registerAlert').hide()
+
+    var keypair = ec.genKeyPair();
+    if (Cookies.get('privateKey')) {
+      keypair = ec.keyFromPrivate(Cookies.get('privateKey'));
+    }
+
+    function update() {
+      var prv = keypair.getPrivate('hex');
+      var pub = keypair.getPublic('hex');
+      $('#privateKey').val(bigInt(prv, 16).toString());
+      $('#publicKey').val(pub);
+      Cookies.set('privateKey', prv.toString());
+      Cookies.set('publicKey', pub.toString());
+    }
+
+    function random() {
+      keypair = ec.genKeyPair();
+      update();
+    }
+
+    function register() {
+      $('#registerAlert').show()
+      $('#registerAlert').text("Usuario registrado con llave pública " + $('#publicKey').val());
+    }
+
+    $(function() {
+      $('#randomButton').click(random);
+      $('#registerButton').click(register);
+      $('#privateKey').bind('keyup', function() {
+        $('#privateKey').val($('#privateKey').val().replace(/\D/g, ''));
+        keypair = ec.keyFromPrivate(bigInt($('#privateKey').val()).toString(16));
+        update();
+      });
+      update();
+    });

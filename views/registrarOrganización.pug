@@ -4,7 +4,7 @@ block content
   .container
 
     .card
-      h4.card-header Registrar Usuario
+      h4.card-header Registrar Organización
       .card-body
         form.form-horizontal
           .form-group
@@ -12,11 +12,7 @@ block content
             .input-group
               input.form-control
           .form-group
-            label.control-label(for='data') Apellidos
-            .input-group
-              input.form-control
-          .form-group
-            label.control-label(for='data') Especialidad
+            label.control-label(for='data') Tipo
             .input-group
               input.form-control
           .form-group
@@ -30,7 +26,7 @@ block content
             input#publicKey.form-control(disabled)
           .form-group
               span.input-group-btn
-                button.btn.btn-secondary#registerButton(type='button', ) Registrar
+                button.btn.btn-primary#registerButton(type='button', ) Registrar
           label.alert.alert-success#registerAlert(role="alert")
             This is a success alert—check it out!
 
@@ -62,7 +58,7 @@ block content
 
     function register() {
       $('#registerAlert').show()
-      $('#registerAlert').text("Usuario registrado con llave pública " + $('#publicKey').val());
+      $('#registerAlert').text("Organización registrada con llave pública " + $('#publicKey').val());
     }
 
     $(function() {

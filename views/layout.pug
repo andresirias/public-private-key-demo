@@ -31,8 +31,10 @@ html(lang='en')
         span.navbar-toggler-icon
       .navbar-collapse.collapse#collapsingNavbar
         ul.navbar-nav.ml-auto
-          li.nav-item(class={active: page === 'keys'})
-            a.nav-link(href='/keys') Keys
+          li.nav-item(class={active: page === 'registrarUsuario'})
+            a.nav-link(href='/registrarUsuario') Registrar Usuario
+          li.nav-item(class={active: page === 'registrarOrganización'})
+            a.nav-link(href='/registrarOrganización') Registrar Organización
           li.nav-item(class={active: page === 'signatures'})
             a.nav-link(href='/signatures') Signatures
           li.nav-item(class={active: page === 'transaction'})
