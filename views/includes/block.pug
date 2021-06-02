@@ -30,9 +30,9 @@
             .input-group
               .input-group-addon(name="dollar-sign") $
               input.form-control(name="value" id='block'+block.block+'chain'+block.chain+'tx'+x+'value', type='text', value=tx.value, onkeyup='updateChain('+block.block+', '+block.chain+', '+block.txCount+');')
-              .input-group-addon Organización:
+              .input-group-addon Usuario:
               input.form-control(id='block'+block.block+'chain'+block.chain+'tx'+x+'from', type='text', value=tx.from, onkeyup='updateChain('+block.block+', '+block.chain+', '+block.txCount+');')
-              .input-group-addon Contrata a:
+              .input-group-addon Acepta tarea de:
               input.form-control(id='block'+block.block+'chain'+block.chain+'tx'+x+'to', type='text', value=tx.to, onkeyup='updateChain('+block.block+', '+block.chain+', '+block.txCount+');')
             .input-group
               .input-group-addon(name="seq-text") Seq:
