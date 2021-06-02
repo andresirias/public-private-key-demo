@@ -8,10 +8,15 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   min-height: 75rem;
   padding-top: 4.5rem;
+  background: rgb(162, 210, 255);
 }
 
 body > .container {
   padding: 0 15px 0;
+}
+
+.card {
+  background: rgb(229, 212, 155);
 }
 
 .container .text-muted {
@@ -31,11 +36,11 @@ input {
 }
 
 .card-success {
-  background: rgb(216, 240, 223);
+  background: rgb(77, 255, 130);
 }
 
 .card-error {
-  background: rgb(220, 220, 250);
+  background: rgb(255, 104, 104);
 }
 
 .sig-success {
@@ -43,7 +48,7 @@ input {
 }
 
 .card-error {
-  background: rgb(250, 220, 220);
+  background: rgb(255, 104, 104);
 }
 
 .github-ribbon {

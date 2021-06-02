@@ -25,7 +25,7 @@ block content
                 label.control-label(for='data') Llave privada de la organización: 
                 input#privateKey(type='number').form-control
               .form-group
-                button#sign-button.btn.btn-block.btn-primary(type='button') Firmar
+                button#sign-button.btn.btn-block.btn-dark(type='button') Firmar
               .form-group
                 label.control-label(for='data') Firma
                 input#sign-signature.form-control(disabled)
@@ -42,7 +42,7 @@ block content
                 label.control-label(for='data') Firma
                 input#verify-signature.form-control
               .form-group
-                button#verify-button.btn.btn-block.btn-primary(type='button') Verificar
+                button#verify-button.btn.btn-block.btn-dark(type='button') Verificar
 
   script.
     var EC = elliptic.elliptic().ec;
