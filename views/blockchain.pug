@@ -90,7 +90,7 @@ block content
 
     function verifySignature(block, chain, tx) {
       try {
-        var message = $('#block'+block+'chain'+chain+'tx'+tx+'value').val() +
+        var message = 
                       $('#block'+block+'chain'+chain+'tx'+tx+'from').val() +
                       $('#block'+block+'chain'+chain+'tx'+tx+'to').val() 
         var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));

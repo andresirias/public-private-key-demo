@@ -17,8 +17,6 @@ block content
               .form-group
                 label.control-label(for='data') Message
                 .input-group
-                  .input-group-addon $
-                  input.form-control#sign-amount(value='20.00')
                   .input-group-addon From:
                   input.form-control#sign-from
                   .input-group-addon -&gt;
@@ -74,7 +72,8 @@ block content
 
     $(function() {
       $('#sign-button').click(function() {
-        var message = $('#sign-amount').val() + $('#sign-from').val() + $('#sign-to').val();
+        var message =  $('#sign-from').val() + $('#sign-to').val();
+        console.log(message);
         var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));
         var hexSignature = buffer.Buffer.from(keypair.sign(binaryMessage).toDER()).toString('hex');
         $('#sign-signature').val(hexSignature);
@@ -88,7 +87,7 @@ block content
         var tmpKey;
         try {
           tmpKey = ec.keyFromPublic($('#verify-from').val(), 'hex');
-          var message = $('#verify-amount').val() + $('#verify-from').val() + $('#verify-to').val();
+          var message = $('#verify-from').val() + $('#verify-to').val();
           var binaryMessage = buffer.Buffer.from(CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex));
           if (tmpKey.verify(binaryMessage, $('#verify-signature').val())) {
             $('#card').addClass('alert-success');
@@ -104,9 +103,6 @@ block content
       $('#sign-signature').bind('keyup', function() {
         resetVerifier();
       });
-      $('#sign-amount').bind('keyup', function() {
-        resetVerifier();
-      });
       $('#sign-from').bind('keyup', function() {
         resetVerifier();
       });
@@ -114,9 +110,6 @@ block content
         resetVerifier();
       });
       $('#verify-signature').bind('keyup', function() {
-        resetVerifier();
-      });
-      $('#verify-amount').bind('keyup', function() {
         resetVerifier();
       });
       $('#verify-from').bind('keyup', function() {
@@ -134,22 +127,6 @@ block content
         resetVerifier();
         update();
       });
-      if (Cookies.get('amount')) {
-        $('#sign-amount').val(Cookies.get('amount'));
-        $('#verify-amount').val(Cookies.get('amount'));
-      }
-      if (Cookies.get('amount')) {
-        $('#sign-from').val(Cookies.get('from'));
-        $('#verify-from').val(Cookies.get('from'));
-      }
-      if (Cookies.get('amount')) {
-        $('#sign-to').val(Cookies.get('to'));
-        $('#verify-to').val(Cookies.get('to'));
-      }
-      $('#sign-amount').bind('keyup', function() {
-        Cookies.set('amount', $('#sign-amount').val());
-        $('#verify-amount').val($('#sign-amount').val());
-      });
       $('#sign-from').bind('keyup', function() {
         Cookies.set('from', $('#sign-from').val());
         $('#verify-from').val($('#sign-from').val());
@@ -157,10 +134,6 @@ block content
       $('#sign-to').bind('keyup', function() {
         Cookies.set('to', $('#sign-to').val());
         $('#verify-to').val($('#sign-to').val());
-      });
-      $('#verify-amount').bind('keyup', function() {
-        Cookies.set('amount', $('#verify-amount').val());
-        $('#sign-amount').val($('#verify-amount').val());
       });
       $('#verify-from').bind('keyup', function() {
         Cookies.set('from', $('#verify-from').val());
